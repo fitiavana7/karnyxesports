@@ -16,19 +16,24 @@ retravail à chaque palier.
 
 | Breakpoint | Ce qui change |
 |---|---|
-| **1440 px** (référence) | Container 1240 px, roster 4 colonnes, stats 4 colonnes, fiche joueur 2 colonnes |
-| **1100 px** | Roster → 3 colonnes, KPI → 2 colonnes, `hero__grid` gap 64 → 40 |
-| **900 px** | Nav desktop masquée, burger affiché, `hero__grid` / `player-hero__grid` / `player-body` / `contact` → 1 colonne, visuel du hero au-dessus du texte (`order: -1`) |
-| **720 px** | Roster → 2 colonnes, `stat-grid` → 2, `stats__detail` → 2, `contact__row` → 1, `player-nav` → 1, footer → 1 colonne, `hero__stats` → 2×2 |
-| **460 px** | Roster → 1 colonne, `player-hero__meta` → 2 colonnes |
+| **1440 px** (référence) | Container 1240 px, organigramme 4 colonnes, stats 4 colonnes, fiche joueur 2 colonnes |
+| **1100 px** | KPI → 2 colonnes, `hero__grid` gap 64 → 40 |
+| **900 px** | Nav desktop masquée, burger affiché, `hero__grid` / `player-hero__grid` / `player-body` / `contact` → 1 colonne, visuel du hero au-dessus du texte (`order: -1`), organigramme → 2 colonnes |
+| **720 px** | `stat-grid` → 2, `stats__detail` → 2, `contact__row` → 1, `player-nav` → 1, footer → 1 colonne, `hero__stats` → 2×2 |
+| **460 px** | Organigramme → 1 colonne, `player-hero__meta` → 2 colonnes |
 
 ### Points à ne pas oublier
 
+- Toutes les cartes de l'organigramme ont la **même largeur** (`max-width: 280px`) quel que
+  soit le niveau ; `--players` reprend exactement la grille de `--auto`.
 - `hero__stat:nth-child(2n) { border-right: 0 }` à 720 px — sinon la grille 2×2 garde une
   bordure verticale au milieu.
 - `.hero__visual { order: -1 }` à 900 px : sur mobile, l'emblème doit arriver avant le texte,
   sinon l'écran d'accueil est vide en haut.
 - `.player-hero__figure { max-width: 420px }` à 900 px — la silhouette ne doit pas s'étirer.
+- Contrôle automatisé : `npm run check:responsive` (nécessite un navigateur lancé avec
+  `--remote-debugging-port=9222`) vérifie débordement horizontal et égalité des largeurs de
+  carte à 1440 / 1280 / 1100 / 900 / 768 / 720 / 540 / 460 / 360 px.
 
 ---
 
@@ -154,14 +159,15 @@ Checklist sur la home et une fiche joueur, en 1440 / 768 / 390 px :
 - [ ] Le hero remplit l'écran sans barre de scroll verticale anormale
 - [ ] L'emblème est net et centré, le halo or ne déborde pas
 - [ ] Le bandeau de 4 chiffres est aligné verticalement
-- [ ] Les 12 cartes roster sont de hauteur identique (grid stretch)
+- [ ] Les 12 cartes de l'organigramme ont la même largeur et la même hauteur à tous les niveaux
+- [ ] Le badge de rôle est en haut à droite (y compris `Joueur`) et les connecteurs relient les niveaux
 - [ ] Au survol d'une carte : élévation 6 px, liseré or, la flèche « Profil » glisse à droite
 - [ ] Les 4 KPI s'animent une seule fois
 - [ ] Les séparateurs diagonaux s'alignent sur la largeur du container
 - [ ] Le formulaire focus a une bordure gauche or
 
 **Fiche joueur**
-- [ ] Le numéro fantôme est lisible derrière la silhouette
+- [ ] Le hero affiche le nom, l'organisation (badge or) et la silhouette, sans numéro fantôme
 - [ ] Le badge « Organisation » est lisible sous le nom
 - [ ] La citation est alignée à gauche avec le guillemet or
 - [ ] Les 3 métadonnées (nation, numéro, arrivée) forment une grille 3 colonnes sans trou

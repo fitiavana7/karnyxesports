@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "node scripts/check-data.mjs",
+    "check:responsive": "node scripts/check-responsive.mjs",
     "build:standalone": "vite build --config vite.standalone.config.js && node scripts/build-standalone.mjs"
   },
   "dependencies": {

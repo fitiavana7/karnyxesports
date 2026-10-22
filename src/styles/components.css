@@ -541,8 +541,8 @@
 .org-chart {
   display: flex;
   flex-direction: column;
-  gap: 42px;
-  margin-top: 48px;
+  gap: 28px;
+  margin-top: 42px;
 }
 
 .org-level {
@@ -550,21 +550,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .org-level::before {
   content: '';
   position: absolute;
-  top: -24px;
+  top: -16px;
   left: 50%;
   width: 1px;
-  height: 24px;
-  background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.4));
+  height: 16px;
+  background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.45));
   transform: translateX(-50%);
 }
 
-.org-level--top::before {
+.org-level::after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.32), transparent);
+}
+
+.org-level--top::before,
+.org-level--top::after {
   display: none;
 }
 
@@ -572,9 +583,9 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 16px;
+  padding: 4px 12px;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.56rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-400);
@@ -586,52 +597,56 @@
 .org-level__grid {
   width: 100%;
   display: grid;
-  gap: 22px;
+  gap: 14px;
 }
 
 .org-level__grid--single {
-  max-width: 320px;
+  max-width: 280px;
   grid-template-columns: 1fr;
 }
 
-.org-level__grid--auto {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.org-level__grid--auto,
+.org-level__grid--players {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   justify-items: center;
 }
 
-.org-level__grid--auto > * {
-  width: min(320px, 100%);
+.org-level__grid--auto > *,
+.org-level__grid--players > * {
+  width: min(280px, 100%);
 }
 
 @media (max-width: 900px) {
   .org-chart {
-    gap: 34px;
-    margin-top: 36px;
+    gap: 24px;
+    margin-top: 32px;
   }
 
   .org-level::before {
-    top: -18px;
-    height: 18px;
+    top: -14px;
+    height: 14px;
+  }
+
+  .org-level::after {
+    top: -14px;
+    left: 6%;
+    right: 6%;
+  }
+
+  .org-level__grid--auto,
+  .org-level__grid--players {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 720px) {
-  .org-level__grid--auto {
+@media (max-width: 460px) {
+  .org-level__grid--auto,
+  .org-level__grid--players {
     grid-template-columns: 1fr;
   }
-
-  .org-level__grid--auto > * {
-    width: min(340px, 100%);
-  }
 }
 
-/* --------------------------------- Roster -------------------------------- */
-
-.roster {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
+/* ------------------------------- Cartes joueur ---------------------------- */
 
 .player-card {
   position: relative;
@@ -646,6 +661,12 @@
     box-shadow 0.35s var(--ease);
 }
 
+.player-card--org {
+  max-width: 280px;
+  width: 100%;
+  justify-self: center;
+}
+
 .player-card:hover {
   transform: translateY(-6px);
   box-shadow:
@@ -657,17 +678,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 16px 18px;
+  gap: 8px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--slate-line);
 }
 
 .player-card__tag {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.56rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   color: var(--gold-400);
+}
+
+.player-card__role-badge {
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.24) 0%, rgba(212, 175, 55, 0.08) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  clip-path: var(--clip-notch-xs);
 }
 
 .player-card__figure {
@@ -675,8 +708,8 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  aspect-ratio: 1 / 0.86;
-  padding: 20px 20px 0;
+  aspect-ratio: 1 / 0.78;
+  padding: 10px 12px 0;
   background:
     radial-gradient(120% 80% at 50% 108%, rgba(192, 144, 96, 0.16), transparent 62%),
     linear-gradient(180deg, rgba(58, 69, 82, 0.32), transparent 70%);
@@ -686,7 +719,7 @@
 .player-card__figure svg {
   position: relative;
   width: 100%;
-  max-width: 210px;
+  max-width: 148px;
   z-index: 1;
   transition: transform 0.4s var(--ease);
 }
@@ -696,12 +729,12 @@
 }
 
 .player-card__body {
-  padding: 18px 18px 20px;
+  padding: 12px 12px 14px;
   border-top: 1px solid var(--slate-line);
 }
 
 .player-card__name {
-  font-size: 1.18rem;
+  font-size: 0.98rem;
   letter-spacing: 0.05em;
 }
 
@@ -709,16 +742,16 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: 14px;
-  margin-top: 18px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .player-card__cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.54rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--slate-200);
@@ -1609,9 +1642,6 @@
 /* ------------------------------ Responsive ------------------------------- */
 
 @media (max-width: 1100px) {
-  .roster {
-    grid-template-columns: repeat(3, 1fr);
-  }
   .stats__kpis {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1660,10 +1690,6 @@
 }
 
 @media (max-width: 720px) {
-  .roster {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
   .hero__stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 0;
@@ -1711,9 +1737,6 @@
 }
 
 @media (max-width: 460px) {
-  .roster {
-    grid-template-columns: 1fr;
-  }
   .player-hero__meta {
     grid-template-columns: repeat(2, 1fr);
   }

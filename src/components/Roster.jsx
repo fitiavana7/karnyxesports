@@ -64,7 +64,7 @@ export default function Roster() {
           {joueurs.length > 0 ? (
             <div className="org-level org-level--bottom">
               <p className="org-level__label">Joueurs</p>
-              <div className="roster">
+              <div className="org-level__grid org-level__grid--players">
                 {joueurs.map((player) => (
                   <PlayerCard key={player.id} player={player} />
                 ))}

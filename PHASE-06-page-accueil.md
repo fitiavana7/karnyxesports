@@ -143,26 +143,41 @@ Empilement, du fond vers l'avant :
 
 ## 4. `Roster.jsx` + `PlayerCard.jsx`
 
-### 4.1 Roster
+### 4.1 Roster — organigramme
+
+L'effectif est présenté comme un organigramme à trois niveaux (présidence, bureau &
+responsables, joueurs), trié par `getOrgRank()`.
 
 ```jsx
-<section className="section section--deep texture-grid" id="effectif">
-  <div className="container">
-    <SectionTitle
-      eyebrow="L'effectif"
-      title="Douze joueurs, une identité"
-      lead="Une équipe construite par groupes de fonction, rodée sur les longues sessions mobile et portée par un même exigence de précision."
-    />
-    <div className="roster">
-      {players.map((player) => (
-        <PlayerCard key={player.id} player={player} />
-      ))}
-    </div>
+<SectionTitle
+  eyebrow="L'effectif"
+  title="Organigramme KARNYX"
+  lead="Direction, bureau exécutif puis effectif. Une structure claire au service de l'équipe."
+/>
+
+<div className="org-chart">
+  <div className="org-level org-level--top">
+    <p className="org-level__label">Présidence</p>
+    <div className="org-level__grid org-level__grid--single">…</div>
   </div>
-</section>
+  <div className="org-level org-level--middle">
+    <p className="org-level__label">Bureau &amp; Responsables</p>
+    <div className="org-level__grid org-level__grid--auto">…</div>
+  </div>
+  <div className="org-level org-level--bottom">
+    <p className="org-level__label">Joueurs</p>
+    <div className="org-level__grid org-level__grid--players">…</div>
+  </div>
+</div>
 ```
 
-Grille : `repeat(4, 1fr)` → 3 colonnes à 1100 px → 2 à 720 px → 1 à 460 px.
+Ordre hiérarchique : Président (0) → Vice-président (1) → Trésorier (2) → Secrétaire Général (3)
+→ Conseiller (4) → Joueur (5).
+
+Grilles : toutes les cartes ont la même taille (`max-width: 280px`) ; `--single` = 1 colonne,
+`--auto` et `--players` = `repeat(auto-fit, minmax(240px, 1fr))` → 2 colonnes à 900 px → 1 à
+460 px. Les connecteurs sont dessinés en CSS (`.org-level::before` vertical,
+`.org-level::after` horizontal) et masqués sur le niveau supérieur.
 
 ### 4.2 PlayerCard
 
@@ -170,22 +185,26 @@ Structure :
 
 | Zone | Contenu |
 |---|---|
-| `.player-card__top` | tag `KARNYX_XXX` (or, mono) |
+| `.player-card__top` | tag `KARNYX_XXX` (or, mono) + badge de rôle abrégé (haut droite) |
 | `.player-card__figure` | `Portrait` SVG (silhouette) |
 | `.player-card__body` | nom + lien « Profil → » |
 
-> **Carte volontairement minimale** : ni poste, ni style de jeu, ni pied, ni rôle, ni numéro,
-> ni overall. La fiche joueur (`/#slug`) ne conserve que les données officielles (identité,
-> organisation, nation, numéro, mois d'arrivée).
-> La carte ne montre que l'identité (tag + pseudonyme) et l'accès au profil.
+> **Badge de rôle** : `getShortRole()` retire « et Joueur » / « Joueur et » et abrège
+> (`Vice-prés.`, `Secr. Général`) ; les joueurs affichent `Joueur`. Le badge est toujours
+> positionné en haut à droite de la carte (`justify-content: space-between`).
+
+> **Carte volontairement minimale** : ni poste, ni style de jeu, ni pied, ni numéro, ni overall.
+> La fiche joueur (`/slug`) ne conserve que les données officielles (identité, organisation,
+> nation, numéro, mois d'arrivée).
 
 La carte entière est un `<Link to={`/${player.slug}`}>` : zone cliquable complète, navigation
 clavier native.
 
 ```jsx
-<Link to={`/${player.slug}`} className="player-card shimmer reveal">
+<Link to={`/${player.slug}`} className="player-card player-card--org shimmer reveal">
   <div className="player-card__top">
     <span className="player-card__tag">{player.tag}</span>
+    <span className="player-card__role-badge">{shortRole}</span>
   </div>
 
   <div className="player-card__figure">
@@ -207,8 +226,8 @@ clavier native.
 ### 4.3 Numéro fantôme — retiré
 
 Le numéro du joueur en filigrane derrière la silhouette (`9.5rem`, `color: transparent`,
-`-webkit-text-stroke`) a été retiré des cartes : la grille a gagné enpureté et le numéro
-reste lisible sur la fiche joueur (`/#[slug]`), où il est帮扶` en grand dans le hero.
+`-webkit-text-stroke`) a été retiré des cartes : la grille a gagné en pureté et le numéro
+reste lisible sur la fiche joueur (`/slug`), où il est affiché en grand dans le hero.
 
 ---
 
