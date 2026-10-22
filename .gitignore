@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-standalone
+*.log
+.DS_Store
+.vite
+
+# Document source confidentiel (CIN, contrat, serie d'appareil) : jamais versionne
+liste.pdf
+
+# Implementation de reference doublon, remplacee par la racine
+_prototype/
