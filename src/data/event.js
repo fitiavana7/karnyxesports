@@ -4,7 +4,6 @@ export const nextEvent = {
   competition: 'Premier League — Division 1',
   status: 'À venir',
   poster: 'event.jpeg',
-  motto: 'Strike first. Win always.',
   teams: [
     { name: 'FEROX', side: 'left' },
     { name: 'NXZ GAMING', side: 'right' },

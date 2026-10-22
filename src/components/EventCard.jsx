@@ -42,11 +42,6 @@ export default function EventCard() {
                 </li>
               ))}
             </ul>
-
-            <blockquote className="event__motto">
-              <p>{nextEvent.motto}</p>
-              <footer>KARNYX</footer>
-            </blockquote>
           </div>
         </div>
       </div>

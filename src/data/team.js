@@ -2,10 +2,9 @@ export const team = {
   name: 'KARNYX',
   legalName: 'KARNYX ESPORTS',
   tagline: 'eFootball Mobile · Madagascar',
-  slogan: 'Précision. Rythme. Domination.',
-  motto: 'Strike first. Win always.',
+  slogan: 'Strike first. Win always.',
   baseline:
-    "Douze joueurs, une seule identité. KARNYX est une structure eFootball Mobile malgache créée en décembre 2025, engagée dès la première saison en CEM Premier League et construite autour d'un jeu collectif, d'une discipline tactique et d'une exigence permanente sur le format mobile.",
+    "KARNYX est une structure eFootball Mobile malgache créée en décembre 2025, engagée dès la première saison en CEM Premier League et construite autour d'un jeu collectif, d'une discipline tactique et d'une exigence permanente sur le format mobile.",
   founded: 2025,
   foundedLabel: 'Décembre 2025',
   region: 'Madagascar',

@@ -27,10 +27,6 @@ export default function Hero() {
             {team.slogan}
           </p>
 
-          <p className="hero__motto anim-fade-up" style={{ '--reveal-delay': '120ms' }}>
-            {team.motto}
-          </p>
-
           <p className="hero__desc anim-fade-up" style={{ '--reveal-delay': '160ms' }}>
             {team.baseline}
           </p>

@@ -390,15 +390,6 @@
   color: var(--silver-300);
 }
 
-.hero__motto {
-  margin-top: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-500);
-}
-
 .hero__desc {
   margin-top: 20px;
   max-width: 520px;
@@ -1588,31 +1579,6 @@
   background: rgba(192, 144, 96, 0.16);
   box-shadow: inset 0 0 0 1px rgba(192, 144, 96, 0.5);
   color: var(--gold-300);
-}
-
-.event__motto {
-  margin-top: 34px;
-  padding: 20px 24px;
-  background: linear-gradient(150deg, rgba(42, 51, 61, 0.6), rgba(27, 34, 43, 0.4));
-  clip-path: var(--clip-notch-sm);
-  box-shadow: inset 0 0 0 1px var(--slate-line);
-}
-
-.event__motto p {
-  font-family: var(--font-display);
-  font-size: 1.06rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--silver-300);
-}
-
-.event__motto footer {
-  margin-top: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  color: var(--gold-500);
 }
 
 .footer__league {

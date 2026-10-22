@@ -90,9 +90,8 @@ Grille 2 colonnes : contenu à gauche, emblème à droite.
 |---|---|---|
 | Badge | `Madagascar · CEM Premier League · Division 1` | `team` |
 | Titre H1 | `KARNYX` en `.metal-text` | `team.name` |
-| Slogan | « Précision. Rythme. Domination. » | `team.slogan` |
-| Devise | « Strike first. Win always. » | `team.motto` |
-| Paragraphe | baseline de l'org | `team.baseline` |
+| Slogan | « Strike first. Win always. » | `team.slogan` |
+| Paragraphe | baseline de l'org (sans « Douze joueurs, une seule identité ») | `team.baseline` |
 | CTA | « Découvrir l'effectif » (`/#effectif`) + « Nous contacter » (`/#contact`) | — |
 | Bandeau stats | Matchs 18 · Victoires 11 · Taux 61 % · Points 34 | `teamStats` |
 
