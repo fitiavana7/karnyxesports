@@ -22,7 +22,7 @@ export default function EventCard() {
           <div className="event__body reveal">
             <p className="event__eyebrow">
               <span className="event__dot" />
-              Prochain événement
+              Dernier événement
             </p>
 
             <h2 className="event__title">{nextEvent.title}</h2>

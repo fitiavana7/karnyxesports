@@ -2,7 +2,7 @@ export const nextEvent = {
   title: 'Playoffs',
   organizer: 'CEM — Community eFootball Madagascar',
   competition: 'Premier League — Division 1',
-  status: 'À venir',
+  status: 'Finaliste Playoffs',
   poster: 'event.jpeg',
   teams: [
     { name: 'FEROX', side: 'left' },

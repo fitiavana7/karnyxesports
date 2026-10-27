@@ -95,7 +95,7 @@ export default function PlayerPage() {
               <span className="player-hero__ghost" aria-hidden="true">
                 {player.number}
               </span>
-              <Portrait hue={player.hue} label={`Portrait de ${player.displayName}`} />
+              {player.photo ? <img src={player.photo} alt={'Photo de ' + player.displayName} className="player-page__photo" /> : <Portrait hue={player.hue} label={`Portrait de ${player.displayName}`} />}
             </div>
 
             <div>

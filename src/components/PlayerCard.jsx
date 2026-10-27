@@ -28,7 +28,7 @@ export default function PlayerCard({ player }) {
       </div>
 
       <div className="player-card__figure">
-        <Portrait hue={player.hue} label={`Portrait de ${player.displayName}`} />
+        {player.photo ? <img src={player.photo} alt={'Photo de ' + player.displayName} className="player-card__photo" /> : <Portrait hue={player.hue} label={`Portrait de ${player.displayName}`} />}
       </div>
 
       <div className="player-card__body">
