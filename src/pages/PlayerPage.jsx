@@ -59,14 +59,16 @@ export default function PlayerPage() {
 
   const { previous, next } = getAdjacentPlayers(slug)
 
-  const tiles = [
+  const stats = player.stats
+
+  const tiles = stats && [
     { label: 'Matchs joués', value: player.stats.matches },
     { label: 'Buts', value: player.stats.goals },
     { label: 'Passes décisives', value: player.stats.assists },
     { label: 'Clean sheets', value: player.stats.cleanSheets },
   ]
 
-  const bars = [
+  const bars = stats && [
     { label: 'Taux de victoire', value: player.stats.winRate },
     { label: 'Précision des passes', value: player.stats.passAccuracy },
     { label: 'Duels gagnés', value: player.stats.duelsWon },
@@ -129,24 +131,30 @@ export default function PlayerPage() {
               {player.displayName}
             </h2>
 
-            <p className="reveal" style={{ marginTop: 22, fontSize: '1.05rem', lineHeight: 1.85 }}>
-              {player.bio}
-            </p>
+            {player.bio && (
+              <p className="reveal" style={{ marginTop: 22, fontSize: '1.05rem', lineHeight: 1.85 }}>
+                {player.bio}
+              </p>
+            )}
 
-            <blockquote className="quote reveal">
-              <p>{player.quote}</p>
-              <footer>
-                {player.displayName} — {player.tag}
-              </footer>
-            </blockquote>
+            {player.quote && (
+              <blockquote className="quote reveal">
+                <p>{player.quote}</p>
+                <footer>
+                  {player.displayName} — {player.tag}
+                </footer>
+              </blockquote>
+            )}
 
-            <div className="chips reveal">
-              {player.strengths.map((strength) => (
-                <span className="chip" key={strength}>
-                  {strength}
-                </span>
-              ))}
-            </div>
+            {player.strengths?.length > 0 && (
+              <div className="chips reveal">
+                {player.strengths.map((strength) => (
+                  <span className="chip" key={strength}>
+                    {strength}
+                  </span>
+                ))}
+              </div>
+            )}
 
             <div className="player-nav reveal">
               <Link to={`/${previous.slug}`} className="player-nav__link">
@@ -167,6 +175,7 @@ export default function PlayerPage() {
             </div>
           </div>
 
+          {stats && (
           <div>
             <p className="eyebrow reveal">Statistiques</p>
             <h2 className="reveal" style={{ marginTop: 14 }}>
@@ -202,6 +211,7 @@ export default function PlayerPage() {
               ))}
             </div>
           </div>
+          )}
         </div>
       </section>
     </div>

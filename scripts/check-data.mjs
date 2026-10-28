@@ -63,10 +63,11 @@ for (const p of players) {
   if (p.slug !== p.tag.replace(/^KARNYX_/, '').toLowerCase()) err(`${p.tag}: slug incoherent (${p.slug})`)
   if (p.nationality !== 'Madagascar') err(`${p.tag}: nationalite ${p.nationality}`)
   if (p.hue < 20 || p.hue > 46) err(`${p.tag}: hue hors plage (${p.hue})`)
-  const gpm = Math.round((p.stats.goals / p.stats.matches) * 100) / 100
-  if (Math.abs(gpm - p.stats.goalsPerMatch) > 0.011) err(`${p.tag}: goalsPerMatch ${p.stats.goalsPerMatch} != ${gpm}`)
+  if (p.stats) {
+    const gpm = Math.round((p.stats.goals / p.stats.matches) * 100) / 100
+    if (Math.abs(gpm - p.stats.goalsPerMatch) > 0.011) err(`${p.tag}: goalsPerMatch ${p.stats.goalsPerMatch} != ${gpm}`)
+  }
   if (new Set(p.strengths).size !== p.strengths.length) err(`${p.tag}: strengths dupliquees`)
-  if (!p.quote || !p.bio) err(`${p.tag}: texte manquant`)
   if (!/202[5-6]/.test(p.joined)) err(`${p.tag}: joined hors saison (${p.joined})`)
   if (!p.orgRole) err(`${p.tag}: role organisation manquant`)
   if (!p.firstName || !p.lastName) err(`${p.tag}: nom manquant`)
